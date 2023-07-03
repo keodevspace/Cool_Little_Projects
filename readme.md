@@ -1,6 +1,6 @@
-<p align="center">
+
 ![Imgur](https://i.imgur.com/BpAKWMN.png)
-</p>
+
 
 Cool Little Projects Repository
 Welcome to the Cool Little Projects repository! This repository serves as a collection of all the cool and interesting small projects that I have created. Here, you'll find a variety of projects showcasing my skills and creativity.
