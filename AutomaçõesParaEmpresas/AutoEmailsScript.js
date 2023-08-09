@@ -2,8 +2,14 @@ function enviarEmailsPersonalizados() {
   var planilha = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   var dados = planilha.getRange("A2:C" + planilha.getLastRow()).getValues(); 
 
-  var assunto = "teste"; // assunto do email
-  var mensagem = "teste"; // mensagem do email
+  // assunto e corpo do email
+  var assunto = "teste4"; 
+  var mensagem = "Olá {NOME},\n\n" +
+                 "Gostaríamos de compartilhar um voucher especial para você:\n" +
+                 "{LINK}\n\n" +
+                 "Aproveite esta oferta exclusiva e tenha um ótimo dia!\n\n" +
+                 "Atenciosamente,\n" +
+                 "PeC";
 
   for (var i = 0; i < dados.length; i++) {
     var nome = dados[i][0];
@@ -21,3 +27,4 @@ function enviarEmail(destinatario, assunto, mensagem, nome, link) {
   var emailTexto = mensagem.replace("{NOME}", nome).replace("{LINK}", link);
   GmailApp.sendEmail(destinatario, assunto, emailTexto);
 }
+
