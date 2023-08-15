@@ -1,30 +1,28 @@
-var SLACK_TOKEN = 'MY_SLACK_TOKEN';
+var WEBHOOK_URL = 'https://hooks.slack.com/services/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';
 
-function sendToSlack(channel, message) {
-  var url = 'https://slack.com/api/chat.postMessage';
+function sendToSlack(message) {
   var payload = {
     method: 'post',
-    headers: {
-      Authorization: 'Bearer ' + SLACK_TOKEN,
-      'Content-Type': 'application/json'
-    },
-    payload: JSON.stringify({
-      channel: channel,
-      text: message
-    })
+    contentType: 'application/x-www-form-urlencoded',
+    payload: 'payload=' + encodeURIComponent('{"text": "' + message + '"}')
   };
-  
-  var response = UrlFetchApp.fetch(url, payload);
+
+  var response = UrlFetchApp.fetch(WEBHOOK_URL, payload);
   Logger.log(response.getContentText());
 }
 
 function sendMessageFromSheet() {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Sheet1'); // nome da planilha
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('AppGranlover'); 
   var data = sheet.getDataRange().getValues();
-  
-  for (var i = 1; i < data.length; i++) { 
-    var channel = '@username'; // nome do canal
-    var message = "Mensagem: " + data[i][0] + "\nHora do Envio: " + data[i][1] + "\nDia do Envio: " + data[i][2] + "\n" + data[i][3];
-    sendToSlack(channel, message);
+
+  for (var i = 1; i < data.length; i++) {
+    var email = data[i][0];
+    var subject = data[i][1];
+    var messageContent = data[i][2];
+
+    var message = subject + "\n" + messageContent;
+
+    // Envia a mensagem para o Slack via Webhook
+    sendToSlack(message);
   }
 }
