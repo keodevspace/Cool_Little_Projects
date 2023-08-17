@@ -1,4 +1,4 @@
-var WEBHOOK_URL = 'https://hooks.slack.com/services/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';
+var WEBHOOK_URL = 'YOUR_URL_HERE';
 
 function sendToSlack(message) {
   var payload = {
