@@ -1,0 +1,312 @@
+// //const robotron = document.querySelector("#robotron"): Essa linha de código seleciona o elemento no DOM que possui o atributo id com o valor "robotron" e armazena-o na variável robotron. O método document.querySelector() é usado para selecionar um único elemento com base em um seletor CSS, e nesse caso, estamos selecionando o elemento com o id="robotron".
+
+// robotron.addEventListener("click", () => { ... }): Nesta linha, estamos adicionando um ouvidor de eventos do tipo "click" ao elemento com o id="robotron". Isso significa que, quando o elemento é clicado, a função anônima () => { ... } será executada. A função anônima é uma "arrow function" (função de seta) que não tem um nome específico e é definida diretamente no local onde está sendo utilizada.
+
+// console.log("Cliquei no robô."): Essa é a ação que será executada quando o elemento com o id="robotron" for clicado. Neste caso, a função anônima simplesmente exibe a mensagem "Cliquei no robô." no console do navegador.
+
+// function dizOi(nome) { ... }: Aqui temos a definição de uma função chamada dizOi() que possui um parâmetro nome. Essa função exibe uma mensagem de boas-vindas personalizada com base no valor passado como argumento nome. A mensagem é composta por "Oi, " seguido do nome passado como argumento e, em seguida, a mensagem padrão "Boas Vindas ao Robotron 2000".
+
+// dizOi("Keo"): Nesta linha, chamamos a função dizOi() e passamos "Keo" como argumento. Isso resultará em duas mensagens sendo exibidas no console: "Oi, Keo" e "Boas Vindas ao Robotron 2000".
+// ou seja, eu manipulo o code para que ele diga 'oi' para qualquer pessoa
+//'keo' é o argumento e nome é o parâmetro
+
+// Resumindo, o código cria um elemento no DOM com o id="robotron" e adiciona um ouvidor de eventos de clique a esse elemento. Quando o elemento é clicado, a mensagem "Cliquei no robô." é registrada no console. Além disso, o código define uma função dizOi() que recebe um nome como argumento e exibe uma saudação personalizada com esse nome no console. Em seguida, a função é chamada com o argumento "Keo", resultando nas mensagens "Oi, Keo" e "Boas Vindas ao Robotron 2000" sendo exibidas no console.
+
+const robotron = document.querySelector("#robotron")
+
+robotron.addEventListener("click", () => {
+   console.log("Cliquei no robô.")
+})
+
+function dizOi(nome) {
+   console.log("Oi, " + nome)
+   console.log("Boas Vindas ao Robotron 2000")
+}
+
+dizOi("Keo")
+
+//parseInt: transforma string em número inteiro
+//querySelectorAll: seleciona todos os elementos que possuem a classe controle-ajuste
+//forEach: percorre todos os elementos que possuem a classe controle-ajuste
+// evento.target: retorna o elemento que foi clicado
+// evento.target.textContent: retorna o texto do elemento que foi clicado   
+// ===: compara o valor e o tipo de dado
+// ==: compara apenas o valor
+// evento.target.parentNode: retorna o elemento pai do elemento que foi clicado
+// data-atributo: atributo personalizado que pode ser criado para qualquer elemento HTML
+// dataset: retorna um objeto com todos os atributos personalizados de um elemento HTML
+
+const subtrair = document.querySelector("#subtrair")
+const somar = document.querySelector("#somar")
+const braco = document.querySelector("#braco")
+
+
+// REFATORANDO ESSA FUNÇÃO
+
+subtrair.addEventListener("click", (evento) => {
+    manipulaDados("subtrair")})
+
+somar.addEventListener("click", (evento) => {
+   manipulaDados("somar")})
+   
+function manipulaDados(operacao) {
+   if(operacao == "subtrair") {
+       braco.value = parseInt(braco.value) - 1
+   }else {
+       braco.value = parseInt(braco.value) + 1
+   }
+}
+
+==================================
+Data-attributes são utilizados para guardar valores em elementos HTML. Esses valores podem ser manipulados através do JavaScript. Também é possível estilizar elementos HTML com CSS referenciando o seu data-attribute. Essa funcionalidade é bem recente no mundo do desenvolvimento, sendo lançada na última versão do HTML(HTML5).
+
+Data-attributes não devem ser utilizados para dados visíveis, pois tecnologias de acessibilidade podem não identificar seus valores.
+
+Sua estrutura é dividida em duas partes:
+
+A primeira parte é o identificador deste dado, que consiste em data- + o nome de sua escolha que melhor identifica o tipo de dado a ser atribuído.
+A segunda parte é o valor atribuído à este data-attribute, este valor deve sempre estar entre aspas “”, e dessa maneira é lido como uma string.
+Segue exemplo abaixo:
+
+HTML
+
+  <h1>Lista de tintas:</h1>
+  <ul id="lista">
+    <li data-cor="laranja" data-tipo="tinta-exterior" onclick="mudaCores(this)" class="item">Tinta laranja</li>
+    <li data-cor="vermelho" data-tipo="tinta-interior"  onclick="mudaCores(this)" class="item">Tinta vermelha</li>
+    <li data-cor="branco" data-tipo="tinta-interior"  onclick="mudaCores(this)" class="item">Tinta branca</li>
+    <li data-cor="amarelo" data-tipo="tinta-exterior"  onclick="mudaCores(this)" class="item">Tinta amarelo</li>
+    <li data-cor="rosa" data-tipo="tinta-exterior"  onclick="mudaCores(this)" class="item">Tinta rosa</li>
+  </ul>COPIAR CÓDIGO
+No JavaScript, podemos criar uma função que recebe esses atributos, permitindo manipulá-los:
+
+JS
+
+function mudaCores(elementos){
+    var cores = elementos.getAttribute("[data-cor]");
+    var tipoElemento = elementos.getAttribute("[data-tipo]");
+  }COPIAR CÓDIGO
+O prefixo data- não é obrigatório para definir um data-attribute personalizado, podemos alterar o código para a seguinte forma:
+
+HTML
+
+  <h1>Lista de tintas:</h1>
+  <ul id="lista">
+    <li cor="laranja" tipo="tinta-exterior" onclick="mudaCores(this)" class="item">Tinta laranja</li>
+    <li cor="vermelho" tipo="tinta-interior"  onclick="mudaCores(this)" class="item">Tinta vermelha</li>
+    <li cor="branco" tipo="tinta-interior"  onclick="mudaCores(this)" class="item">Tinta branca</li>
+    <li cor="amarelo" tipo="tinta-exterior"  onclick="mudaCores(this)" class="item">Tinta amarelo</li>
+    <li cor="rosa" tipo="tinta-exterior"  onclick="mudaCores(this)" class="item">Tinta rosa</li>
+  </ul>COPIAR CÓDIGO
+JS
+
+function mudaCores(elementos){
+    var cores = elementos.getAttribute("[cor]");
+    var tipoElemento = elementos.getAttribute("[tipo]");
+  }
+
+==================================
+
+Apenas com teoria não é possível aprender código, então, vamos exercitar a utilização do data-attribute em funções neste desafio. Temos uma lista de cores disponibilizada no código abaixo. Você irá criar um botão que, ao ser clicado, faz aparecer esta lista, e também criará um segundo botão que, ao ser clicado, faz com que a lista de cores volte a sumir.
+
+Você pode chegar ao mesmo resultado de diferentes formas. Então, fique à vontade para compartilhar a sua solução para este desafio no Fórum!
+
+Como fazer:
+
+Utilize os códigos HTML e CSS disponibilizados;
+Crie o arquivo de código JS;
+Referencie o arquivo JS no HTML.
+HTML
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Manipulando o DOM - Aula 3</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <button onclick="mostraTintas(this)">Aluratintas em estoque:</button>
+
+  <ul class="lista">
+    <li cor="laranja" tipo="tinta-exterior" class="item">Tinta laranja</li>
+    <li cor="vermelho" tipo="tinta-interior" class="item">Tinta vermelha</li>
+    <li cor="branco" tipo="tinta-interior" class="item">Tinta branca</li>
+    <li cor="amarelo" tipo="tinta-exterior" class="item">Tinta amarela</li>
+    <li cor="rosa" tipo="tinta-exterior" class="item">Tinta rosa</li>
+    <li cor="preto" tipo="tinta-exterior" class="item">Tinta preta</li>
+  </ul>
+
+  <a href="https://alura.com.br/" target="_blank"><img src="https://www.alura.com.br/assets/img/home/alura-logo.svg" alt="" class="alura-logo"></a>
+
+</body>
+</html>COPIAR CÓDIGO
+CSS
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Roboto Mono", monospace;
+  min-height: 400px;
+  min-width: 450px;
+  background-size: 80vh;
+  color: rgb(0, 0, 0);
+  background-image: url("https://www.uniabeu.edu.br/wp-content/uploads/2020/03/fundo-lilas.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+button {
+  font-size: 24px;
+  font-family: "Futura Lt BT", sans-serif;
+  background-color: black;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+  padding: 8px 20px 8px 20px;
+  color: white;
+  box-shadow: 0px 0px 5px gray;
+  border-radius: 5px 5px 0 0;
+  border: none;
+  transition: 500ms;
+  opacity: 0.8;
+  margin: 30px 0;
+}
+
+button:hover {
+  color: white;
+  background-color: gray;
+}
+
+button:active {
+  color: black;
+  background-color: white;
+}
+
+.lista {
+  padding: 20px;
+  list-style-type: none;
+  border: 4mm ridge rgba(234, 122, 11, 0.992);
+}
+
+.alura-logo {
+  width: 150px;
+  position: absolute;
+  top: 2%;
+  right: 2%;
+}
+
+[cor="laranja"] {
+  color: orange;
+}
+
+[cor="vermelho"] {
+  color: red;
+}
+
+[cor="branco"] {
+  color: white;
+}
+
+[cor="amarelo"] {
+  color: yellow;
+}
+
+[cor="rosa"] {
+  color: pink;
+}
+
+[cor="preto"] {
+  color: black;
+}COPIAR CÓ
+
+
+Opinião do instrutor
+
+const lista = document.querySelector("ul");
+document.querySelector("#botao").addEventListener("click", () => {
+  lista.setAttribute("data-lista", "mostrar");
+});
+
+document.querySelector(".close").addEventListener("click", () => {
+  lista.setAttribute("data-lista", "esconder");
+});COPIAR CÓDIGO
+Explicação do código:
+
+A variável lista, serve para referenciar a ul, utilizando o método querySelector.
+
+A segunda linha de código cria um evento de clique, referenciando o botão, pelo id #botao. Essa mesma linha poderia ser escrita da seguinte forma: const botao = document.querySelector("#botao") botao.addEventListener("click", () =>
+
+No método addEventListener, é passado o que deve acontecer com o clique, que é alterar algum atributo, com o método setAttribute, de "data-lista", para "mostrar".
+
+Esses são os data attributes no arquivo CSS:
+
+[data-lista="mostrar"] { display: block; } [data-lista="esconder"] { display: none; }
+
+O segundo bloco de código realiza a mesma operação de alteração dos data-attributes, só que alterando dessa vez a partir do clique no botão com a classe .close
+
+=====================================
+
+// Seleciona todos os elementos do DOM que possuem o atributo "data-controle" e armazena em uma lista chamada "controle".
+const controle = document.querySelectorAll("[data-controle]");
+
+// Seleciona todos os elementos do DOM que possuem o atributo "data-estatistica" e armazena em uma lista chamada "estatistica".
+const estatistica = document.querySelectorAll("[data-estatistica]");
+
+// Cria um objeto chamado "pecas" que contém informações sobre diferentes tipos de peças e suas características.
+const pecas = {
+    "bracos": {
+        "forca": 29,
+        "poder": 35,
+        "energia": -21,
+        "velocidade": -5
+    },
+    // ... (outros tipos de peças e suas características)
+};
+
+// Para cada elemento na lista "controle", adiciona um event listener para o evento de clique.
+// Quando um elemento com "data-controle" for clicado, duas funções serão chamadas: manipulaDados() e atualizaEstatistica().
+controle.forEach((elemento) => {
+    elemento.addEventListener('click', (evento) => {
+        manipulaDados(evento.target.dataset.controle, evento.target.parentNode);
+        atualizaEstatistica(evento.target.dataset.peca);
+    });
+});
+
+// Essa função é responsável por manipular os dados do elemento clicado.
+// Ela recebe o tipo de operação ('+' ou '-') e o elemento pai do elemento clicado.
+function manipulaDados(operacao, controle) {
+    // Encontra o elemento dentro do elemento pai que possui o atributo "data-contador".
+    const peca = controle.querySelector("[data-contador]");
+
+    // Verifica se a operação é uma subtração ('-') e, se for, decrementa o valor do elemento em 1.
+    if (operacao === "-") {
+        peca.value = parseInt(peca.value) - 1;
+    } else { // Caso contrário, é uma adição ('+'), e o valor do elemento é incrementado em 1.
+        peca.value = parseInt(peca.value) + 1;
+    }
+}
+
+// Essa função é responsável por atualizar as estatísticas dos elementos do DOM com o atributo "data-estatistica".
+// Ela recebe o tipo de peça (por exemplo, "bracos", "blindagem", etc.).
+function atualizaEstatistica(peca) {
+    // Para cada elemento na lista "estatistica", atualiza o conteúdo somando o valor correspondente da peça do objeto "pecas".
+    estatistica.forEach((elemento) => {
+        elemento.textContent = parseInt(elemento.textContent) + pecas[peca][elemento.dataset.estatistica];
+    });
+}
+
+=================================
+
+vercel.com para deploy
